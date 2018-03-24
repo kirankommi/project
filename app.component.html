@@ -1,0 +1,36 @@
+<div>  
+<form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">  
+<div class="form-container">  
+<div class="row columns">  
+    <div [formGroup]="signupForm">
+        <select  [(ngModel)]="test" formControlName="range">
+            <option value="">Select a range</option> 
+            <option *ngFor="let country of countries" value= {{country.id}}>
+                    {{country.name}}
+            </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="signupForm.controls['range'].touched && !signupForm.controls['range'].valid">  
+            <span *ngIf="signupForm.controls['range'].hasError('required') ">  
+                range is required  
+            </span> 
+        </div>  
+    </div>
+    <div [formGroup]="signupForm">
+        <input type="text" formControlName="sample">
+        <div class="alert alert-danger" *ngIf="signupForm.controls['sample'].touched && !signupForm.controls['sample'].valid">  
+            
+                <span *ngIf="signupForm.controls['sample'].hasError('specificValueInsideRange') ">  
+                        range is required  
+                    </span>  
+            
+        </div>
+    </div>
+
+    <br>  
+    <div>  
+        <input type="Submit" value="Post Data" [disabled]='!signupForm.valid' >  
+    </div>  
+  </div>  
+  </div>  
+  </form>  
+</div>  
